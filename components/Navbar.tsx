@@ -36,18 +36,17 @@ export default function Navbar() {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center shadow-md flex-shrink-0">
-            <span className="text-white font-bold text-base font-heading tracking-tight">RF</span>
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="font-heading font-bold text-[1.1rem] text-brand-text dark:text-white">
-              Reliant Fincare
-            </span>
-            <span className="text-[0.58rem] font-semibold tracking-widest text-brand-primary uppercase">
-              Pvt Ltd · Financial Services
-            </span>
-          </div>
+        <Link href="/" className="flex items-center">
+          <img
+            src="/images/ReliantFincare_Pvt_LOGO.svg"
+            alt="Reliant Fincare Pvt Ltd"
+            className="h-10 w-auto dark:hidden"
+          />
+          <img
+            src="/images/ReliantFincare_Pvt_LOGO_dark.svg"
+            alt="Reliant Fincare Pvt Ltd"
+            className="h-10 w-auto hidden dark:block"
+          />
         </Link>
 
         {/* Desktop Nav */}
