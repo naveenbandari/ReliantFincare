@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: var(--font-poppins), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-kode-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* ── Light mode brand palette (blue) ── */
+  --color-brand-primary: #1E3A8A;
+  --color-brand-primary-light: #3B82F6;
+  --color-brand-secondary: #4338CA;
+  --color-brand-accent: #10B981;
+  --color-brand-accent-light: #34D399;
+  --color-brand-gold: #F59E0B;
+  --color-brand-bg: #F8FAFC;
+  --color-brand-text: #0F172A;
+  --color-brand-muted: #64748B;
+  --color-brand-border: #E2E8F0;
+
+  /* ── Dark mode surface tokens ── */
+  --color-dark-bg: #0D0D0F;
+  --color-dark-surface: #18181B;
+  --color-dark-card: #1C1C1F;
+  --color-dark-border: #27272A;
+  --color-dark-muted: #71717A;
+}
+
+/* ── Dark mode: orange brand palette + neutral near-black surfaces ── */
+.dark {
+  /* Brand → orange */
+  --color-brand-primary: #F45C0A;
+  --color-brand-primary-light: #FB923C;
+  --color-brand-secondary: #C2410C;
+  --color-brand-accent: #F97316;
+  --color-brand-accent-light: #FDBA74;
+  --color-brand-gold: #FCD34D;
+  --color-brand-bg: #09090B;
+  --color-brand-text: #F4F4F5;
+  --color-brand-muted: #71717A;
+  --color-brand-border: #27272A;
+
+  /* Remap slate → neutral zinc so all dark:bg-slate-* use charcoal blacks */
+  --color-slate-50:  #FAFAFA;
+  --color-slate-100: #F4F4F5;
+  --color-slate-200: #E4E4E7;
+  --color-slate-300: #D4D4D8;
+  --color-slate-400: #A1A1AA;
+  --color-slate-500: #71717A;
+  --color-slate-600: #52525B;
+  --color-slate-700: #3F3F46;
+  --color-slate-800: #27272A;
+  --color-slate-900: #18181B;
+  --color-slate-950: #09090B;
+}
+
+@keyframes blob {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(30px, -50px) scale(1.1); }
+  66%  { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes orange-glow-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%       { opacity: 0.30; transform: scale(1.08); }
+}
+
+@layer utilities {
+  .animate-blob {
+    animation: blob 8s infinite;
+  }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
+
+  /* Dark glow blob used in hero / sections */
+  .dark-glow {
+    animation: orange-glow-pulse 4s ease-in-out infinite;
+  }
+
+  .glass {
+    @apply bg-white/90 backdrop-blur-md border-b border-brand-border;
+  }
+  .dark .glass {
+    background-color: rgba(13, 13, 15, 0.85);
+    border-color: var(--color-dark-border);
+  }
+
+  .glass-card {
+    @apply bg-white border border-brand-border shadow-[0_10px_30px_rgba(0,0,0,0.07)] rounded-2xl;
+  }
+  .dark .glass-card {
+    background-color: var(--color-dark-card);
+    border-color: var(--color-dark-border);
+    box-shadow: 0 4px 24px rgba(244, 92, 10, 0.06);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-brand-primary to-brand-secondary;
+  }
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-accent to-brand-primary-light;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-7 py-3.5 rounded-xl font-semibold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer;
+  }
+  .btn-outline {
+    @apply bg-transparent text-brand-primary dark:text-white px-7 py-3.5 rounded-xl font-semibold text-sm border-2 border-brand-primary dark:border-white hover:bg-brand-primary/5 dark:hover:bg-white/5 transition-all duration-200;
+  }
+  .btn-white {
+    @apply bg-white text-brand-primary px-7 py-3.5 rounded-xl font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary dark:bg-brand-primary/20 dark:text-brand-primary-light text-xs font-semibold uppercase tracking-widest mb-4;
+  }
+}
