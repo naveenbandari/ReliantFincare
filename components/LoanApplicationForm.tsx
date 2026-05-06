@@ -283,7 +283,7 @@ export default function LoanApplicationForm() {
   const progress = ((currentStep) / (steps.length - 1)) * 100;
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch lg:items-start max-w-6xl mx-auto min-w-0">
+    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch lg:items-start w-full mx-auto min-w-0">
 
       {/* ── LEFT SIDEBAR (desktop) ────────────────────────────────────────── */}
       <aside className="hidden lg:flex flex-col gap-5 w-72 flex-shrink-0 sticky top-28">

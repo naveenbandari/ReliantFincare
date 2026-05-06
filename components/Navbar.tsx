@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useSyncExternalStore } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { Menu, X, Moon, Sun, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -40,14 +41,20 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center min-w-0">
-          <img
+          <Image
             src="/images/ReliantFincare_Pvt_LOGO.svg"
             alt="Reliant Fincare Pvt Ltd"
+            width={220}
+            height={54}
+            priority
             className="h-8 sm:h-10 w-auto max-w-[190px] dark:hidden"
           />
-          <img
+          <Image
             src="/images/ReliantFincare_Pvt_LOGO_dark.svg"
             alt="Reliant Fincare Pvt Ltd"
+            width={220}
+            height={54}
+            priority
             className="h-8 sm:h-10 w-auto max-w-[190px] hidden dark:block"
           />
         </Link>

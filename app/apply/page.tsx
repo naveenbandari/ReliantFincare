@@ -14,7 +14,7 @@ export default function ApplyPage() {
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-accent/5 rounded-full filter blur-3xl -translate-x-1/4 translate-y-1/4" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="container relative z-10">
           {/* Page Header */}
           <div className="max-w-xl mb-8 lg:mb-12">
             <div className="section-label mb-3">Apply in Minutes</div>
