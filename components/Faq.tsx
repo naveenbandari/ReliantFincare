@@ -29,13 +29,13 @@ const faqs = [
 
 export default function Faq() {
   return (
-    <section className="py-24 bg-slate-50 dark:bg-slate-950">
+    <section className="py-16 sm:py-20 lg:py-24 bg-slate-50 dark:bg-slate-950">
       <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
             Find answers to common questions about our loan products and processes.
           </p>
         </div>
@@ -54,16 +54,16 @@ export default function Faq() {
                 className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm"
               >
                 <Accordion.Header>
-                  <Accordion.Trigger className="flex items-center justify-between w-full p-6 text-left font-semibold text-slate-900 dark:text-white hover:text-brand-primary dark:hover:text-brand-primary transition-colors group">
+                  <Accordion.Trigger className="flex items-start justify-between w-full p-5 sm:p-6 text-left font-semibold text-slate-900 dark:text-white hover:text-brand-primary dark:hover:text-brand-primary transition-colors group gap-4">
                     {faq.question}
                     <ChevronDown 
-                      className="text-slate-400 group-data-[state=open]:rotate-180 transition-transform duration-300" 
+                      className="text-slate-400 group-data-[state=open]:rotate-180 transition-transform duration-300 flex-shrink-0 mt-0.5" 
                       size={20} 
                     />
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden text-slate-600 dark:text-slate-400 data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-                  <div className="p-6 pt-0 leading-relaxed">
+                  <div className="p-5 sm:p-6 pt-0 leading-relaxed">
                     {faq.answer}
                   </div>
                 </Accordion.Content>

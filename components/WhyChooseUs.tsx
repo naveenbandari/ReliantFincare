@@ -39,14 +39,14 @@ const stats = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="about" className="py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
         style={{ backgroundImage: 'radial-gradient(circle, #1E3A8A 1px, transparent 1px)', backgroundSize: '32px 32px' }}
       />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* Left — Features */}
           <motion.div
@@ -59,11 +59,11 @@ export default function WhyChooseUs() {
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-5">
               Why Choose Reliant Fincare?
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400 mb-12">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-8 sm:mb-12">
               Experience the fastest, most convenient way to get a loan. We make borrowing simple, quick, and completely hassle-free.
             </p>
 
-            <div className="space-y-7">
+            <div className="space-y-6 sm:space-y-7">
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
@@ -71,7 +71,7 @@ export default function WhyChooseUs() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex items-start gap-5"
+                  className="flex items-start gap-4 sm:gap-5 min-w-0"
                 >
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${feature.color}`}>
                     <feature.icon size={22} strokeWidth={1.75} />
@@ -93,7 +93,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-2 gap-5"
+            className="grid min-[420px]:grid-cols-2 gap-4 sm:gap-5"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -102,12 +102,12 @@ export default function WhyChooseUs() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-                className="relative rounded-3xl overflow-hidden p-8 flex flex-col justify-center items-center aspect-square text-center bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-lg shadow-slate-200/30 dark:shadow-none group hover:-translate-y-1 transition-transform duration-300"
+                className="relative rounded-3xl overflow-hidden p-5 sm:p-8 flex flex-col justify-center items-center min-h-36 min-[420px]:aspect-square text-center bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-lg shadow-slate-200/30 dark:shadow-none group hover:-translate-y-1 transition-transform duration-300"
               >
                 {/* Gradient top accent */}
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.gradient}`} />
-                <h3 className={`font-mono text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-br ${stat.gradient} bg-clip-text text-transparent`}>
-                  {stat.value}
+                <h3 className={`font-mono text-2xl sm:text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-br ${stat.gradient} bg-clip-text text-transparent`}>
+                  <span className="break-words">{stat.value}</span>
                 </h3>
                 <p className="font-semibold text-slate-500 dark:text-slate-400 text-sm">
                   {stat.label}

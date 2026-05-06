@@ -18,11 +18,11 @@ import EmiCalculator from './EmiCalculator';
 
 const loanTypes = [
   { id: 'home',     label: 'Home Loan',     rate: 8.5,  icon: Home,         desc: 'Purchase, build, or renovate' },
+  { id: 'education',label: 'Education Loan',rate: 9.5,  icon: GraduationCap,desc: 'India & abroad studies' },
   { id: 'personal', label: 'Personal Loan', rate: 12.5, icon: User,         desc: 'Any personal expense' },
   { id: 'business', label: 'Business Loan', rate: 15.0, icon: Briefcase,    desc: 'Grow your business' },
-  { id: 'education',label: 'Education Loan',rate: 9.5,  icon: GraduationCap,desc: 'India & abroad studies' },
   { id: 'mortgage', label: 'Mortgage Loan', rate: 10.5, icon: Building,     desc: 'Loan against property' },
-  { id: 'car',      label: 'Used Car Loan', rate: 11.5, icon: Car,          desc: '100% on-road funding' },
+  { id: 'car',      label: 'Car Loan',      rate: 11.5, icon: Car,          desc: 'New and used vehicle funding' },
 ];
 
 const loanRates: Record<string, number> = Object.fromEntries(
@@ -230,7 +230,7 @@ export default function LoanApplicationForm() {
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ type: 'spring', duration: 0.6, bounce: 0.45 }}
-        className="bg-white dark:bg-slate-900 rounded-3xl p-10 md:p-16 shadow-2xl border border-slate-100 dark:border-slate-800 text-center max-w-2xl mx-auto relative overflow-hidden"
+        className="bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-10 md:p-16 shadow-2xl border border-slate-100 dark:border-slate-800 text-center max-w-2xl mx-auto relative overflow-hidden"
       >
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent" />
 
@@ -238,15 +238,15 @@ export default function LoanApplicationForm() {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-          className="w-24 h-24 bg-brand-accent/10 rounded-full flex items-center justify-center mx-auto mb-8 relative"
+          className="w-20 h-20 sm:w-24 sm:h-24 bg-brand-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8 relative"
         >
           <div className="absolute inset-0 bg-brand-accent/20 rounded-full animate-ping" />
-          <CheckCircle2 size={48} className="text-brand-accent relative z-10" />
+          <CheckCircle2 size={40} className="text-brand-accent relative z-10 sm:w-12 sm:h-12" />
         </motion.div>
 
         <motion.h2
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-          className="text-3xl md:text-4xl font-bold font-heading text-slate-900 dark:text-white mb-3"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading text-slate-900 dark:text-white mb-3"
         >
           You&apos;re on your way! 🎉
         </motion.h2>
@@ -255,14 +255,14 @@ export default function LoanApplicationForm() {
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
           className="space-y-5 mb-10"
         >
-          <p className="text-slate-500 dark:text-slate-400 text-lg">
+          <p className="text-slate-500 dark:text-slate-400 text-base sm:text-lg">
             Your application is under review. We&apos;ll send updates to your email and phone.
           </p>
-          <div className="inline-flex flex-col items-center bg-slate-50 dark:bg-slate-800 rounded-2xl px-8 py-5 border border-slate-100 dark:border-slate-700">
+          <div className="inline-flex max-w-full flex-col items-center bg-slate-50 dark:bg-slate-800 rounded-2xl px-5 sm:px-8 py-5 border border-slate-100 dark:border-slate-700">
             <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest font-semibold mb-1">Reference Number</span>
-            <span className="font-mono font-bold text-2xl text-brand-primary dark:text-blue-400">{ref}</span>
+            <span className="font-mono font-bold text-xl sm:text-2xl text-brand-primary dark:text-blue-400 break-all">{ref}</span>
           </div>
-          <p className="text-sm text-slate-400 dark:text-slate-500 flex items-center justify-center gap-1.5">
+          <p className="text-sm text-slate-400 dark:text-slate-500 flex flex-wrap items-center justify-center gap-1.5">
             <Clock size={14} /> Expected review time: 24–48 hours
           </p>
         </motion.div>
@@ -270,7 +270,7 @@ export default function LoanApplicationForm() {
         <motion.button
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
           onClick={() => (window.location.href = '/')}
-          className="btn-primary px-12 py-4 text-base"
+          className="btn-primary w-full sm:w-auto px-8 sm:px-12 py-4 text-base"
         >
           Return to Home
         </motion.button>
@@ -283,7 +283,7 @@ export default function LoanApplicationForm() {
   const progress = ((currentStep) / (steps.length - 1)) * 100;
 
   return (
-    <div className="flex gap-8 items-start max-w-6xl mx-auto">
+    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch lg:items-start max-w-6xl mx-auto min-w-0">
 
       {/* ── LEFT SIDEBAR (desktop) ────────────────────────────────────────── */}
       <aside className="hidden lg:flex flex-col gap-5 w-72 flex-shrink-0 sticky top-28">
@@ -383,11 +383,11 @@ export default function LoanApplicationForm() {
       </aside>
 
       {/* ── MAIN FORM AREA ───────────────────────────────────────────────────── */}
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 min-w-0 w-full">
 
         {/* Stepper Header */}
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm p-5 md:p-6 mb-5">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
             <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">
               Step {currentStep + 1} of {steps.length}
             </span>
@@ -430,11 +430,11 @@ export default function LoanApplicationForm() {
           {stepMessage && (
             <motion.div
               initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-              className="flex items-center gap-2 bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-sm font-medium px-4 py-3 rounded-xl mb-5"
+              className="flex items-start gap-2 bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-sm font-medium px-4 py-3 rounded-xl mb-5"
             >
               <CheckCircle2 size={16} className="flex-shrink-0" />
               {stepMessage}
-              <button onClick={() => setStepMessage('')} className="ml-auto">
+              <button onClick={() => setStepMessage('')} className="ml-auto flex-shrink-0">
                 <X size={14} />
               </button>
             </motion.div>
@@ -442,10 +442,10 @@ export default function LoanApplicationForm() {
         </AnimatePresence>
 
         {/* Form Card */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden mb-20 md:mb-0">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden mb-24 md:mb-0">
           {/* Step heading bar */}
-          <div className="px-6 md:px-8 pt-7 pb-5 border-b border-slate-100 dark:border-slate-800">
-            <h2 className="font-heading text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="px-5 md:px-8 pt-6 pb-5 border-b border-slate-100 dark:border-slate-800">
+            <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
               {steps[currentStep].heading}
             </h2>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -454,17 +454,17 @@ export default function LoanApplicationForm() {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="p-6 md:p-8">
+            <div className="p-4 sm:p-5 md:p-8">
               <AnimatePresence mode="wait">
 
                 {/* ── STEP 1: LOAN DETAILS ─────────────────────────────── */}
                 {currentStep === 0 && (
-                  <motion.div key="s0" initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} className="space-y-8">
+                  <motion.div key="s0" initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} className="space-y-6 sm:space-y-8">
 
                     {/* Loan type card grid */}
                     <div>
                       <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Loan Type</p>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                         {loanTypes.map((lt) => {
                           const Icon = lt.icon;
                           const selected = loanType === lt.id;
@@ -473,7 +473,7 @@ export default function LoanApplicationForm() {
                               key={lt.id}
                               type="button"
                               onClick={() => setValue('loanType', lt.id, { shouldValidate: true })}
-                              className={`relative rounded-2xl border-2 p-4 text-left transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-brand-primary/30 ${
+                              className={`relative w-full min-w-0 overflow-hidden rounded-2xl border-2 p-3.5 sm:p-4 text-left transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-brand-primary/30 ${
                                 selected
                                   ? 'border-brand-primary bg-blue-50 dark:bg-brand-primary/20 shadow-md'
                                   : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-sm'
@@ -484,16 +484,20 @@ export default function LoanApplicationForm() {
                                   <CheckCircle2 size={12} className="text-white" />
                                 </div>
                               )}
-                              <Icon size={22} className={`mb-2.5 ${selected ? 'text-brand-primary' : 'text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300'} transition-colors`} strokeWidth={1.75} />
-                              <p className={`text-sm font-bold leading-tight mb-1 ${selected ? 'text-brand-primary dark:text-blue-400' : 'text-slate-900 dark:text-white'}`}>
-                                {lt.label}
-                              </p>
-                              <p className={`text-[11px] leading-tight mb-2 ${selected ? 'text-slate-600 dark:text-slate-300' : 'text-slate-400 dark:text-slate-500'}`}>{lt.desc}</p>
-                              <span className={`inline-block text-[11px] font-bold px-2 py-0.5 rounded-full ${
-                                selected ? 'bg-brand-primary text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
-                              }`}>
-                                {lt.rate}% p.a.
-                              </span>
+                              <div className="flex min-w-0 items-center gap-3 sm:block">
+                                <Icon size={22} className={`flex-shrink-0 sm:mb-2.5 ${selected ? 'text-brand-primary' : 'text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300'} transition-colors`} strokeWidth={1.75} />
+                                <div className="min-w-0 flex-1 pr-7 sm:pr-0">
+                                  <p className={`text-sm sm:text-sm font-bold leading-snug mb-0.5 sm:mb-1 break-words ${selected ? 'text-brand-primary dark:text-blue-400' : 'text-slate-900 dark:text-white'}`}>
+                                    {lt.label}
+                                  </p>
+                                  <p className={`text-[11px] sm:text-[11px] leading-snug mb-1.5 sm:mb-2 break-words ${selected ? 'text-slate-600 dark:text-slate-300' : 'text-slate-400 dark:text-slate-500'}`}>{lt.desc}</p>
+                                  <span className={`inline-flex max-w-full items-center text-[11px] font-bold px-2 py-0.5 rounded-full ${
+                                    selected ? 'bg-brand-primary text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
+                                  }`}>
+                                    {lt.rate}% p.a.
+                                  </span>
+                                </div>
+                              </div>
                             </button>
                           );
                         })}
@@ -594,13 +598,13 @@ export default function LoanApplicationForm() {
 
                     <div>
                       <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Employment Type</p>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      <div className="grid min-[420px]:grid-cols-2 md:grid-cols-4 gap-3">
                         {employmentTypes.map((et) => {
                           const Icon = et.icon;
                           return (
                             <label key={et.value} className="cursor-pointer">
                               <input type="radio" value={et.value} {...register('employmentType')} className="peer sr-only" />
-                              <div className="flex flex-col items-center gap-2 p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 text-center transition-all peer-checked:border-brand-primary peer-checked:bg-brand-primary/5 peer-checked:text-brand-primary dark:peer-checked:bg-brand-primary/10 dark:peer-checked:text-blue-400 hover:border-slate-300 dark:hover:border-slate-600">
+                              <div className="flex min-h-32 flex-col items-center gap-2 p-3 sm:p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 text-center transition-all peer-checked:border-brand-primary peer-checked:bg-brand-primary/5 peer-checked:text-brand-primary dark:peer-checked:bg-brand-primary/10 dark:peer-checked:text-blue-400 hover:border-slate-300 dark:hover:border-slate-600">
                                 <Icon size={20} className="text-slate-400 peer-checked:text-brand-primary transition-colors" strokeWidth={1.75} />
                                 <p className="text-xs font-bold leading-tight">{et.value}</p>
                                 <p className="text-[10px] text-slate-400 dark:text-slate-500">{et.hint}</p>
@@ -651,7 +655,7 @@ export default function LoanApplicationForm() {
                         <BadgeCheck size={18} className="text-brand-accent flex-shrink-0 mt-0.5" />
                         <p className="text-sm text-slate-700 dark:text-slate-300">
                           Based on your income, you likely qualify for{' '}
-                          <strong className="text-brand-accent">
+                          <strong className="text-brand-accent break-words">
                             {formatCurrency(watch('monthlyIncome') * 30)} – {formatCurrency(watch('monthlyIncome') * 60)}
                           </strong>
                           {' '}in financing.
@@ -674,14 +678,14 @@ export default function LoanApplicationForm() {
                         <div key={doc.id} className="rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-700 transition-colors hover:border-brand-primary/50 dark:hover:border-brand-primary/40 group">
                           {file ? (
                             /* Uploaded state */
-                            <div className="flex items-center justify-between px-5 py-4">
-                              <div className="flex items-center gap-3">
+                            <div className="flex items-start justify-between gap-3 px-4 sm:px-5 py-4">
+                              <div className="flex items-center gap-3 min-w-0">
                                 <div className="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center">
                                   <CheckCircle2 size={20} className="text-brand-accent" />
                                 </div>
-                                <div>
+                                <div className="min-w-0">
                                   <p className="text-sm font-semibold text-slate-900 dark:text-white">{doc.label}</p>
-                                  <p className="text-xs text-slate-400">{file.name} · {(file.size / 1024).toFixed(0)} KB</p>
+                                  <p className="text-xs text-slate-400 break-all">{file.name} · {(file.size / 1024).toFixed(0)} KB</p>
                                 </div>
                               </div>
                               <button
@@ -694,7 +698,7 @@ export default function LoanApplicationForm() {
                             </div>
                           ) : (
                             /* Upload prompt */
-                            <label className="flex items-center gap-4 px-5 py-5 cursor-pointer">
+                            <label className="flex flex-col min-[420px]:flex-row min-[420px]:items-center gap-4 px-4 sm:px-5 py-5 cursor-pointer">
                               <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-primary/10 transition-colors">
                                 <UploadCloud size={22} className="text-slate-400 group-hover:text-brand-primary transition-colors" />
                               </div>
@@ -711,7 +715,7 @@ export default function LoanApplicationForm() {
                                 <p className="text-xs text-slate-400 mt-0.5">{doc.hint}</p>
                                 <p className="text-xs text-slate-400 mt-0.5 italic">{doc.why}</p>
                               </div>
-                              <span className="text-xs font-semibold text-brand-primary dark:text-blue-400 whitespace-nowrap ml-2">Upload</span>
+                              <span className="text-xs font-semibold text-brand-primary dark:text-blue-400 min-[420px]:ml-2">Upload</span>
                               <input
                                 type="file"
                                 accept=".jpg,.jpeg,.png,.pdf"
@@ -742,14 +746,14 @@ export default function LoanApplicationForm() {
             </div>
 
             {/* ── Desktop CTA Bar ──────────────────────────────────────── */}
-            <div className="hidden md:flex items-center justify-between px-6 md:px-8 py-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+            <div className="hidden md:flex flex-wrap items-center justify-between gap-4 px-6 md:px-8 py-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
               {currentStep > 0 ? (
                 <button type="button" onClick={() => setCurrentStep((s) => s - 1)} className="btn-outline flex items-center gap-2">
                   <ChevronLeft size={16} /> Back
                 </button>
               ) : <div />}
 
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center justify-end gap-3 sm:gap-4">
                 <button
                   type="button"
                   onClick={saveDraft}
@@ -762,7 +766,7 @@ export default function LoanApplicationForm() {
                 </button>
 
                 {currentStep < steps.length - 1 ? (
-                  <button type="button" onClick={processNext} className="btn-primary flex items-center gap-2">
+                  <button type="button" onClick={processNext} className="btn-primary flex items-center justify-center gap-2">
                     Continue to {steps[currentStep + 1].title} <ChevronRight size={16} />
                   </button>
                 ) : (
@@ -780,35 +784,39 @@ export default function LoanApplicationForm() {
       </div>
 
       {/* ── MOBILE STICKY BOTTOM BAR ─────────────────────────────────────────── */}
-      <div className="fixed bottom-0 left-0 right-0 md:hidden z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-t border-slate-200 dark:border-slate-800 px-4 pt-3 pb-5 shadow-2xl">
+      <div className="h-52 md:hidden" aria-hidden="true" />
+      <div className="fixed left-3 right-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] md:hidden z-[80] rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border border-slate-200 dark:border-slate-800 px-3 min-[380px]:px-4 pt-3 pb-3 shadow-2xl">
         {/* EMI chip */}
         {currentStep > 0 && (
-          <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-2.5 mb-3 border border-slate-100 dark:border-slate-700">
+          <div className="mx-auto flex w-full max-w-md flex-wrap items-center justify-between gap-2 bg-slate-50 dark:bg-slate-800 rounded-xl px-3 min-[380px]:px-4 py-2.5 mb-3 border border-slate-100 dark:border-slate-700">
             <span className="text-xs text-slate-500">Your EMI estimate</span>
-            <span className="font-mono font-bold text-brand-primary dark:text-blue-400 text-sm">
+            <span className="font-mono font-bold text-brand-primary dark:text-blue-400 text-sm break-all">
               {formatCurrency(emi)}/mo
             </span>
           </div>
         )}
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex items-center gap-3">
+          <div className="mx-auto flex w-full max-w-md items-stretch gap-2 min-[380px]:gap-3">
             {currentStep > 0 && (
               <button
                 type="button"
                 onClick={() => setCurrentStep((s) => s - 1)}
-                className="flex-shrink-0 p-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-brand-primary hover:text-brand-primary transition-colors"
+                aria-label="Go back to previous step"
+                className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-brand-primary hover:text-brand-primary transition-colors"
               >
                 <ChevronLeft size={20} />
               </button>
             )}
 
             {currentStep < steps.length - 1 ? (
-              <button type="button" onClick={processNext} className="btn-primary flex-1 flex items-center justify-center gap-2 py-4">
-                Continue to {steps[currentStep + 1].title} <ChevronRight size={16} />
+              <button type="button" onClick={processNext} className="btn-primary min-w-0 min-h-12 flex-1 flex items-center justify-center gap-1.5 min-[380px]:gap-2 px-3 min-[380px]:px-5 py-3 text-center text-sm leading-tight">
+                <span className="max-[339px]:hidden">Continue to {steps[currentStep + 1].title}</span>
+                <span className="min-[340px]:hidden">Continue</span>
+                <ChevronRight size={16} className="flex-shrink-0" />
               </button>
             ) : (
-              <button type="submit" disabled={isSubmitting} className="btn-primary flex-1 flex items-center justify-center gap-2 py-4 disabled:opacity-70">
+              <button type="submit" disabled={isSubmitting} className="btn-primary min-w-0 min-h-12 flex-1 flex items-center justify-center gap-2 px-3 min-[380px]:px-5 py-3 disabled:opacity-70 text-center text-sm leading-tight">
                 {isSubmitting
                   ? <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Reviewing…</>
                   : <><Lock size={15} /> Submit Securely</>
@@ -820,9 +828,12 @@ export default function LoanApplicationForm() {
           <button
             type="button"
             onClick={saveDraft}
-            className="w-full text-center text-xs font-semibold text-slate-400 dark:text-slate-500 mt-3 hover:text-brand-primary transition-colors"
+            className="mx-auto mt-3 flex min-h-11 w-full max-w-md items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-center text-xs font-semibold text-slate-600 dark:text-slate-300 shadow-sm transition-colors hover:border-brand-primary hover:text-brand-primary dark:hover:text-blue-400"
           >
-            {saveStatus === 'saved' ? '✓ Draft Saved!' : '💾 Save & Continue Later'}
+            {saveStatus === 'saved'
+              ? <><CheckCircle2 size={14} className="text-brand-accent" /> <span className="text-brand-accent">Draft Saved!</span></>
+              : <><Save size={14} /> Save & Continue Later</>
+            }
           </button>
         </form>
       </div>

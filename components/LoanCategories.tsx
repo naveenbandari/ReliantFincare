@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Home, GraduationCap, User, Briefcase, Building, Car, ArrowRight, Wallet, ShoppingCart } from 'lucide-react';
+import { Home, GraduationCap, User, Briefcase, Building, Car, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import type { TargetAndTransition, Transition } from 'motion/react';
@@ -36,20 +36,12 @@ const categories: Category[] = [
     iconAnim: { animate: { y: [0, -8, 0] }, transition: { duration: 2, ease: 'easeInOut' as const, repeat: Infinity, repeatDelay: 1.5 } },
   },
   {
-    id: 'mortgage', title: 'Mortgage Loan',
-    description: 'Unlock the value of your property with high-value loans against real estate.',
-    icon: Building, accentColor: 'hover:border-indigo-400',
-    lightFrom: '#6366F1', lightTo: '#4338CA', lightGlow: 'rgba(99,102,241,0.45)',
-    dark3dFrom: '#C084FC', dark3dTo: '#7C3AED', dark3dGlow: 'rgba(192,132,252,0.5)',
-    iconAnim: { animate: { scale: [1, 1.18, 1, 1.08, 1] }, transition: { duration: 1.4, repeat: Infinity, repeatDelay: 2 } },
-  },
-  {
-    id: 'working-capital', title: 'Working Capital',
-    description: 'Keep your business operations running smoothly with quick working capital loans.',
-    icon: Wallet, accentColor: 'hover:border-emerald-400',
-    lightFrom: '#10B981', lightTo: '#059669', lightGlow: 'rgba(16,185,129,0.45)',
-    dark3dFrom: '#34D399', dark3dTo: '#059669', dark3dGlow: 'rgba(52,211,153,0.5)',
-    iconAnim: { animate: { rotateY: [0, 25, -12, 0] }, transition: { duration: 1.2, repeat: Infinity, repeatDelay: 2 } },
+    id: 'education', title: 'Education Loan',
+    description: 'Invest in your future with loans designed for higher education in India and abroad.',
+    icon: GraduationCap, accentColor: 'hover:border-pink-400',
+    lightFrom: '#EC4899', lightTo: '#BE185D', lightGlow: 'rgba(236,72,153,0.45)',
+    dark3dFrom: '#FBBF24', dark3dTo: '#B45309', dark3dGlow: 'rgba(251,191,36,0.55)',
+    iconAnim: { animate: { y: [0, -12, 0], rotate: [0, 22, 0] }, transition: { duration: 1.3, repeat: Infinity, repeatDelay: 2 } },
   },
   {
     id: 'personal', title: 'Personal Loan',
@@ -68,28 +60,20 @@ const categories: Category[] = [
     iconAnim: { animate: { rotate: [0, -12, 10, -5, 0], y: [0, -5, 0] }, transition: { duration: 1.3, repeat: Infinity, repeatDelay: 2 } },
   },
   {
-    id: 'used-car', title: 'Used Car Loan',
-    description: 'Drive home your dream car with up to 100% on-road funding and easy EMIs.',
+    id: 'mortgage', title: 'Mortgage Loan',
+    description: 'Unlock the value of your property with high-value loans against real estate.',
+    icon: Building, accentColor: 'hover:border-indigo-400',
+    lightFrom: '#6366F1', lightTo: '#4338CA', lightGlow: 'rgba(99,102,241,0.45)',
+    dark3dFrom: '#C084FC', dark3dTo: '#7C3AED', dark3dGlow: 'rgba(192,132,252,0.5)',
+    iconAnim: { animate: { scale: [1, 1.18, 1, 1.08, 1] }, transition: { duration: 1.4, repeat: Infinity, repeatDelay: 2 } },
+  },
+  {
+    id: 'car', title: 'Car Loan',
+    description: 'Drive home your dream car with flexible vehicle funding and easy EMIs.',
     icon: Car, accentColor: 'hover:border-cyan-400',
     lightFrom: '#06B6D4', lightTo: '#0E7490', lightGlow: 'rgba(6,182,212,0.45)',
     dark3dFrom: '#22D3EE', dark3dTo: '#0E7490', dark3dGlow: 'rgba(34,211,238,0.5)',
     iconAnim: { animate: { x: [0, 10, -5, 0] }, transition: { duration: 1.2, ease: 'easeInOut' as const, repeat: Infinity, repeatDelay: 2 } },
-  },
-  {
-    id: 'education', title: 'Education Loan',
-    description: 'Invest in your future with loans designed for higher education in India and abroad.',
-    icon: GraduationCap, accentColor: 'hover:border-pink-400',
-    lightFrom: '#EC4899', lightTo: '#BE185D', lightGlow: 'rgba(236,72,153,0.45)',
-    dark3dFrom: '#FBBF24', dark3dTo: '#B45309', dark3dGlow: 'rgba(251,191,36,0.55)',
-    iconAnim: { animate: { y: [0, -12, 0], rotate: [0, 22, 0] }, transition: { duration: 1.3, repeat: Infinity, repeatDelay: 2 } },
-  },
-  {
-    id: 'purchase', title: 'Purchase Loan',
-    description: 'Easy financing for consumer durables, electronics, and large purchases.',
-    icon: ShoppingCart, accentColor: 'hover:border-rose-400',
-    lightFrom: '#F43F5E', lightTo: '#BE123C', lightGlow: 'rgba(244,63,94,0.45)',
-    dark3dFrom: '#A78BFA', dark3dTo: '#6D28D9', dark3dGlow: 'rgba(167,139,250,0.5)',
-    iconAnim: { animate: { x: [0, -6, 6, -3, 0] }, transition: { duration: 1.1, repeat: Infinity, repeatDelay: 2 } },
   },
 ];
 
@@ -149,20 +133,20 @@ function Icon3D({
 
 export default function LoanCategories() {
   return (
-    <section id="loans" className="py-24 bg-white dark:bg-slate-900 relative">
+    <section id="loans" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-slate-900 relative">
       <div className="container mx-auto px-4 md:px-6">
 
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <span className="section-label">Our Products</span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Financial Solutions for Every Need
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
             Explore our comprehensive range of loan products tailored to help you achieve your personal and business goals.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid min-[520px]:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {categories.map((category, index) => (
             <motion.div
               key={category.id}
@@ -170,7 +154,7 @@ export default function LoanCategories() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.07 }}
-              className={`group bg-white dark:bg-slate-800/60 rounded-2xl p-6 border-2 border-brand-border dark:border-slate-700/60 ${category.accentColor} dark:hover:border-brand-primary-light hover:shadow-lg dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] transition-all duration-300 flex flex-col`}
+              className={`group bg-white dark:bg-slate-800/60 rounded-2xl p-5 sm:p-6 border-2 border-brand-border dark:border-slate-700/60 ${category.accentColor} dark:hover:border-brand-primary-light hover:shadow-lg dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] transition-all duration-300 flex flex-col min-w-0`}
             >
               <Icon3D
                 icon={category.icon}

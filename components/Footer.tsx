@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mail, Phone, MapPin, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const socialLinks = [
@@ -40,22 +41,22 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 dark:bg-slate-950 text-slate-300 pt-20 pb-10 border-t border-slate-800">
+    <footer className="bg-slate-900 dark:bg-slate-950 text-slate-300 pt-14 sm:pt-20 pb-10 border-t border-slate-800">
       <div className="container mx-auto px-4 md:px-6">
 
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12 sm:mb-16">
 
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center shadow-md flex-shrink-0">
-                <span className="text-white font-bold text-base font-heading">RF</span>
-              </div>
-              <div>
-                <span className="font-heading font-bold text-lg text-white leading-tight block">Reliant Fincare</span>
-                <span className="text-[0.6rem] font-semibold tracking-widest text-brand-primary-light uppercase">Pvt Ltd · Financial Services</span>
-              </div>
+            <Link href="/" className="inline-flex items-center mb-5 min-w-0">
+              <Image
+                src="/images/ReliantFincare_Pvt_LOGO_dark.svg"
+                alt="Reliant Fincare Pvt Ltd"
+                width={220}
+                height={48}
+                className="h-12 w-auto max-w-[220px] object-contain"
+              />
             </Link>
 
             <p className="text-slate-400 mb-6 leading-relaxed text-sm">
@@ -139,13 +140,13 @@ export default function Footer() {
             {/* Newsletter */}
             <div>
               <p className="text-sm font-semibold text-white mb-3">Get loan updates</p>
-              <div className="flex gap-2">
+              <div className="flex flex-col min-[380px]:flex-row gap-2">
                 <input
                   type="email"
                   placeholder="Your email"
                   className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-slate-300 placeholder:text-slate-500 focus:outline-none focus:border-brand-primary-light transition-colors min-w-0"
                 />
-                <button className="bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex-shrink-0">
+                <button className="bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex-shrink-0 inline-flex justify-center">
                   <ArrowRight size={16} />
                 </button>
               </div>
@@ -159,7 +160,7 @@ export default function Footer() {
           <p className="text-slate-500 text-sm">
             © {new Date().getFullYear()} Reliant Fincare Pvt Ltd. All rights reserved.
           </p>
-          <div className="flex items-center gap-6 text-sm">
+          <div className="flex flex-wrap justify-center md:justify-end gap-x-5 gap-y-2 text-sm">
             {['Privacy Policy', 'Terms of Service', 'Disclaimer', 'Grievance Redressal'].map((item) => (
               <Link key={item} href="#" className="text-slate-500 hover:text-brand-primary-light transition-colors">
                 {item}

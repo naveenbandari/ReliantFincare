@@ -36,15 +36,15 @@ const steps = [
 
 export default function LoanProcess() {
   return (
-    <section id="process" className="py-24 bg-white dark:bg-slate-900">
+    <section id="process" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4 md:px-6">
 
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <span className="section-label">How It Works</span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Simple 4-Step Process
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
             We&apos;ve streamlined the borrowing process to make it as frictionless as possible. No endless paperwork, no long queues.
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function LoanProcess() {
           {/* Dashed Connector Line */}
           <div className="hidden md:block absolute top-12 left-[12.5%] right-[12.5%] h-px border-t-2 border-dashed border-slate-200 dark:border-slate-700 z-0" />
 
-          <div className="grid md:grid-cols-4 gap-8 relative z-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
@@ -75,7 +75,7 @@ export default function LoanProcess() {
                 </div>
 
                 <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-2">{step.title}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-48">
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs md:max-w-48">
                   {step.description}
                 </p>
               </motion.div>

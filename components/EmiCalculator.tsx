@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { Info } from 'lucide-react';
@@ -93,7 +93,7 @@ function DualSlider({
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-2 min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-between">
         <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">{label}</label>
 
         {/* Editable value badge */}
@@ -106,14 +106,14 @@ function DualSlider({
             onChange={(e) => setDraft(e.target.value)}
             onBlur={commitEdit}
             onKeyDown={(e) => e.key === 'Enter' && commitEdit()}
-            className="w-36 text-right bg-brand-primary/5 border border-brand-primary rounded-lg px-3 py-1.5 font-mono font-bold text-brand-primary dark:text-blue-400 text-sm outline-none focus:ring-2 focus:ring-brand-primary/30"
+            className="w-full min-[420px]:w-36 text-left min-[420px]:text-right bg-brand-primary/5 border border-brand-primary rounded-lg px-3 py-1.5 font-mono font-bold text-brand-primary dark:text-blue-400 text-sm outline-none focus:ring-2 focus:ring-brand-primary/30"
           />
         ) : (
           <button
             type="button"
             onClick={startEdit}
             title="Click to enter exact value"
-            className="group flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 px-3 py-1.5 rounded-lg transition-colors"
+            className="group flex w-full min-[420px]:w-auto items-center justify-between min-[420px]:justify-start gap-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 px-3 py-1.5 rounded-lg transition-colors"
           >
             <span className="font-mono font-bold text-brand-primary dark:text-blue-400 text-sm">
               {format(value)}{inputSuffix ? ` ${inputSuffix}` : ''}
@@ -212,25 +212,24 @@ export default function EmiCalculator({
     onTenureChange?.(val);
   };
 
-  const [emi, setEmi] = useState(0);
-  const [totalInterest, setTotalInterest] = useState(0);
-  const [totalPayment, setTotalPayment] = useState(0);
-
-  useEffect(() => {
+  const { emi, totalInterest, totalPayment } = useMemo(() => {
     const p = amount;
     const r = rate / 12 / 100;
     const n = tenure * 12;
     if (r === 0) {
-      setEmi(Math.round(p / n));
-      setTotalInterest(0);
-      setTotalPayment(p);
-      return;
+      return {
+        emi: Math.round(p / n),
+        totalInterest: 0,
+        totalPayment: p,
+      };
     }
     const emiVal = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const total = emiVal * n;
-    setEmi(Math.round(emiVal));
-    setTotalPayment(Math.round(total));
-    setTotalInterest(Math.round(total - p));
+    return {
+      emi: Math.round(emiVal),
+      totalInterest: Math.round(total - p),
+      totalPayment: Math.round(total),
+    };
   }, [amount, rate, tenure]);
 
   const principalPct = totalPayment > 0 ? Math.round((amount / totalPayment) * 100) : 0;
@@ -238,7 +237,7 @@ export default function EmiCalculator({
 
   // Shared inner content — used in both inline and standalone modes
   const inputsPanel = (
-    <div className="lg:col-span-3 p-8 md:p-10 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 space-y-9">
+    <div className="lg:col-span-3 min-w-0 p-4 sm:p-8 md:p-10 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 space-y-8 sm:space-y-9">
       <DualSlider
         label="Loan Amount"
         value={amount}
@@ -276,7 +275,7 @@ export default function EmiCalculator({
   );
 
   const resultPanel = (
-    <div className="lg:col-span-2 p-8 md:p-10 bg-slate-50 dark:bg-slate-800/50 flex flex-col justify-center gap-7">
+    <div className="lg:col-span-2 min-w-0 p-4 sm:p-8 md:p-10 bg-slate-50 dark:bg-slate-800/50 flex flex-col justify-center gap-7">
       {/* Hero EMI Card */}
       <motion.div
         key={emi}
@@ -288,7 +287,7 @@ export default function EmiCalculator({
         <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">
           Monthly EMI
         </p>
-        <h3 className="font-mono font-bold text-5xl text-brand-primary dark:text-blue-400 leading-none">
+        <h3 className="font-mono font-bold text-2xl min-[420px]:text-3xl sm:text-5xl text-brand-primary dark:text-blue-400 leading-none break-words">
           {formatCurrency(emi)}
         </h3>
         <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">per month</p>
@@ -300,7 +299,7 @@ export default function EmiCalculator({
           <div className="bg-brand-primary transition-all duration-500" style={{ width: `${principalPct}%` }} />
           <div className="bg-brand-accent transition-all duration-500" style={{ width: `${interestPct}%` }} />
         </div>
-        <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400">
+        <div className="flex flex-col min-[420px]:flex-row min-[420px]:justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-brand-primary inline-block" />
             Principal {principalPct}%
@@ -314,20 +313,20 @@ export default function EmiCalculator({
 
       {/* Breakdown */}
       <div className="space-y-3 text-sm">
-        <div className="flex justify-between items-center py-3 border-t border-slate-200 dark:border-slate-700">
+        <div className="flex flex-col min-[420px]:flex-row min-[420px]:justify-between min-[420px]:items-center gap-1 py-3 border-t border-slate-200 dark:border-slate-700">
           <span className="text-slate-500 dark:text-slate-400">Principal Amount</span>
           <span className="font-semibold text-slate-900 dark:text-white">{formatCurrency(amount)}</span>
         </div>
-        <div className="flex justify-between items-center pb-3 border-b border-slate-200 dark:border-slate-700">
+        <div className="flex flex-col min-[420px]:flex-row min-[420px]:justify-between min-[420px]:items-center gap-1 pb-3 border-b border-slate-200 dark:border-slate-700">
           <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
             Total Interest
             <Info size={12} className="opacity-50" />
           </span>
           <span className="font-semibold text-rose-500 dark:text-rose-400">{formatCurrency(totalInterest)}</span>
         </div>
-        <div className="flex justify-between items-center pt-1">
+        <div className="flex flex-col min-[420px]:flex-row min-[420px]:justify-between min-[420px]:items-center gap-1 pt-1">
           <span className="font-bold text-slate-900 dark:text-white">Total Payable</span>
-          <span className="font-bold text-brand-primary dark:text-blue-400 text-base">{formatCurrency(totalPayment)}</span>
+          <span className="font-bold text-brand-primary dark:text-blue-400 text-base break-words">{formatCurrency(totalPayment)}</span>
         </div>
       </div>
 

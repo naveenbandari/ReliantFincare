@@ -33,24 +33,24 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
       {/* Subtle grid background */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04] pointer-events-none"
         style={{ backgroundImage: 'radial-gradient(circle, #4338CA 1px, transparent 1px)', backgroundSize: '28px 28px' }}
       />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <span className="section-label">Testimonials</span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Don&apos;t Just Take Our Word For It
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
             Hear from thousands of satisfied customers who have achieved their financial goals with us.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -58,12 +58,12 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+              className="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col min-w-0"
             >
               {/* Gradient top bar */}
               <div className={`h-1.5 bg-gradient-to-r ${testimonial.accentColor}`} />
 
-              <div className="p-8 flex flex-col flex-1">
+              <div className="p-5 sm:p-8 flex flex-col flex-1">
                 {/* Stars + Quote */}
                 <div className="flex items-center justify-between mb-5">
                   <div className="flex gap-0.5 text-amber-400">
@@ -80,8 +80,8 @@ export default function Testimonials() {
                 </p>
 
                 {/* Author */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="flex flex-col min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-between gap-4">
+                  <div className="flex items-center gap-3 min-w-0">
                     <div className="relative w-12 h-12 rounded-full overflow-hidden bg-slate-200 flex-shrink-0">
                       <Image
                         src={`https://picsum.photos/seed/${testimonial.imageSeed}/100/100`}
@@ -91,12 +91,12 @@ export default function Testimonials() {
                         referrerPolicy="no-referrer"
                       />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <h4 className="font-bold text-slate-900 dark:text-white text-sm">{testimonial.name}</h4>
                       <p className="text-xs text-slate-500 dark:text-slate-400">{testimonial.role}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold px-2.5 py-1.5 rounded-full">
+                  <div className="flex w-fit items-center gap-1 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold px-2.5 py-1.5 rounded-full">
                     <BadgeCheck size={13} />
                     Verified
                   </div>

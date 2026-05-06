@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Menu, X, Moon, Sun, Phone } from 'lucide-react';
@@ -10,10 +10,13 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -33,19 +36,19 @@ export default function Navbar() {
         isScrolled ? 'glass py-3 shadow-sm' : 'bg-transparent py-5'
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between gap-3">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center min-w-0">
           <img
             src="/images/ReliantFincare_Pvt_LOGO.svg"
             alt="Reliant Fincare Pvt Ltd"
-            className="h-10 w-auto dark:hidden"
+            className="h-8 sm:h-10 w-auto max-w-[190px] dark:hidden"
           />
           <img
             src="/images/ReliantFincare_Pvt_LOGO_dark.svg"
             alt="Reliant Fincare Pvt Ltd"
-            className="h-10 w-auto hidden dark:block"
+            className="h-8 sm:h-10 w-auto max-w-[190px] hidden dark:block"
           />
         </Link>
 
@@ -87,7 +90,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Toggle */}
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-2 md:hidden flex-shrink-0">
           {mounted && (
             <button
               onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
